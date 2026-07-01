@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ZELTRA — Attire Studio</title>
+<meta name="description" content="Bold streetwear for Men, Women & Juniors. New drops every Friday. Free shipping over PKR 3,000.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ZELTRA v2 — image slots
+   Every product / lifestyle photo lives inside a box with the
+   class "ph". It shows a soft placeholder pattern + a caption
+   telling you exactly what to shoot. To drop a real photo in,
+   just add an <img> as the first child of that .ph box, e.g.
+
+     <div class="ph" data-ratio="3/4" data-label="Front — Acid Tee">
+       <img src="your-photo.jpg" alt="Acid Drop Oversized Tee">
+     </div>
+
+   The placeholder pattern & caption disappear automatically the
+   moment a real <img> is present. Nothing else needs to change —
+   sizing, cropping (object-fit: cover) and hover effects are
+   already wired up. No layout edits required.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper: #f3f1eb;
+  --paper-dim: #eae7de;
+  --ink: #0d0d0d;
+  --white: #ffffff;
+  --lime: #cbff2e;
+  --lime-deep: #a8d600;
+  --pink: #ff3f8f;
+  --mid: #6f6c63;
+  --line: rgba(13,13,13,0.13);
+  --line-strong: rgba(13,13,13,0.9);
+  --ph-bg: #e4e1d7;
+  --ph-line: rgba(13,13,13,0.22);
+  --ff-display: 'Unbounded', sans-serif;
+  --ff-body: 'Space Grotesk', sans-serif;
+  --ff-mono: 'Space Mono', monospace;
+  --header-h: 68px;
+  --edge: clamp(16px, 4vw, 40px);
+  --maxw: 1440px;
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--ff-body); font-size: 15px; line-height: 1.6;
+  overflow-x: hidden; -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; }
+
+/* Skip link */
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 999;
+  background: var(--ink); color: var(--lime);
+  padding: 12px 18px; font-family: var(--ff-mono); font-size: 12px;
+  text-decoration: none;
+}
+.skip-link:focus { left: 12px; top: 12px; }
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2.5px solid var(--ink); outline-offset: 2px;
+}
+
+/* ── Image placeholder frame ── */
+.ph {
+  position: relative; overflow: hidden;
+  aspect-ratio: var(--ratio, 3/4);
+  background:
+    repeating-linear-gradient(135deg, var(--ph-bg) 0 14px, #ddd9cc 14px 15px);
+  border: 1px solid var(--ph-line);
+  display: flex; align-items: flex-end;
+}
+.ph img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.ph::before {
+  content: '';
+  position: absolute; inset: 0;
+  border: 1px dashed var(--ph-line);
+  pointer-events: none;
+}
+.ph-tag {
+  position: relative; z-index: 1; margin: 12px;
+  font-family: var(--ff-mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--mid); background: rgba(243,241,235,0.9);
+  border: 1px solid var(--ph-line);
+  padding: 5px 10px; border-radius: 3px;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.ph-tag svg { width: 12px; height: 12px; flex-shrink: 0; }
+.ph:has(img) .ph-tag,
+.ph:has(img)::before { display: none; }
+.ph:has(img) { border-color: transparent; background: var(--ph-bg); }
+
+/* ── Marquee ── */
+.marquee-bar {
+  background: var(--lime); overflow: hidden; white-space: nowrap;
+  padding: 9px 0; border-bottom: 1.5px solid var(--ink);
+}
+.marquee-inner { display: inline-flex; animation: marquee 26s linear infinite; }
+.marquee-bar:hover .marquee-inner { animation-play-state: paused; }
+.marquee-inner span {
+  font-family: var(--ff-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.05em; padding: 0 22px; text-transform: uppercase;
+}
+.marquee-sep { opacity: 0.45; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ── Header ── */
+header {
+  background: var(--paper); border-bottom: 1.5px solid var(--ink);
+  position: sticky; top: 0; z-index: 200;
+  transition: box-shadow 0.2s;
+}
+.header-inner {
+  max-width: var(--maxw); margin: 0 auto; height: var(--header-h);
+  padding: 0 var(--edge);
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  gap: 12px;
+}
+.hamburger {
+  display: none; background: none; border: none; cursor: pointer;
+  width: 38px; height: 38px; align-items: center; justify-content: center;
+}
+.hamburger span { display: block; width: 20px; height: 2px; background: var(--ink); position: relative; }
+.hamburger span::before, .hamburger span::after {
+  content: ''; position: absolute; left: 0; width: 20px; height: 2px; background: var(--ink); transition: transform 0.2s;
+}
+.hamburger span::before { top: -6px; }
+.hamburger span::after { top: 6px; }
+
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a {
+  font-family: var(--ff-mono); font-size: 11.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  text-decoration: none; padding: 9px 14px; border-radius: 100px;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-links a:hover { background: var(--ink); color: var(--lime); }
+.nav-links a.sale-link { color: var(--pink); }
+.nav-links a.sale-link:hover { background: var(--pink); color: var(--white); }
+
+.logo-block { text-align: center; text-decoration: none; }
+.logo-main {
+  font-family: var(--ff-display); font-size: 21px; font-weight: 900;
+  letter-spacing: -0.02em; line-height: 1;
+}
+.logo-tag {
+  font-family: var(--ff-mono); font-size: 7.5px; letter-spacing: 0.22em;
+  color: var(--mid); text-transform: uppercase; display: block; margin-top: 2px;
+}
+
+.nav-actions { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+.icon-btn {
+  background: none; border: none; cursor: pointer; padding: 8px;
+  width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+  color: var(--ink); border-radius: 100px; transition: background 0.15s;
+  text-decoration: none; position: relative;
+}
+.icon-btn:hover { background: var(--paper-dim); }
+.bag-count {
+  position: absolute; top: 3px; right: 3px;
+  background: var(--pink); color: var(--white);
+  border-radius: 50%; width: 15px; height: 15px; font-size: 8.5px;
+  display: flex; align-items: center; justify-content: center; font-weight: 700;
+  font-family: var(--ff-mono);
+}
+
+@media (max-width: 880px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .header-inner { grid-template-columns: auto 1fr auto; }
+}
+
+/* ── Mobile drawer nav ── */
+.mnav-overlay {
+  position: fixed; inset: 0; background: rgba(13,13,13,0.45);
+  z-index: 400; opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.mnav-overlay.open { opacity: 1; pointer-events: all; }
+.mnav {
+  position: fixed; top: 0; left: 0; bottom: 0; width: min(340px, 86vw);
+  background: var(--paper); z-index: 401;
+  transform: translateX(-100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column; overflow-y: auto;
+  border-right: 1.5px solid var(--ink);
+}
+.mnav.open { transform: translateX(0); }
+.mnav-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 20px; border-bottom: 1.5px solid var(--ink);
+}
+.mnav-close { background: none; border: none; font-size: 20px; cursor: pointer; padding: 6px; }
+.mnav-body { padding: 8px 0; }
+.mnav-group { border-bottom: 1px solid var(--line); }
+.mnav-group summary {
+  list-style: none; cursor: pointer; padding: 15px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--ff-display); font-size: 15px; font-weight: 700;
+}
+.mnav-group summary::-webkit-details-marker { display: none; }
+.mnav-group summary::after { content: '+'; font-size: 18px; color: var(--mid); }
+.mnav-group[open] summary::after { content: '−'; }
+.mnav-sub { padding: 0 20px 14px 20px; display: flex; flex-direction: column; gap: 10px; }
+.mnav-sub a { font-family: var(--ff-body); font-size: 13.5px; color: var(--mid); text-decoration: none; }
+.mnav-sale { padding: 15px 20px; display: block; font-family: var(--ff-display); font-weight: 700; color: var(--pink); text-decoration: none; border-bottom: 1px solid var(--line); }
+.mnav-foot { margin-top: auto; padding: 20px; border-top: 1.5px solid var(--ink); }
+.mnav-foot a { display: block; font-family: var(--ff-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--mid); text-decoration: none; padding: 6px 0; }
+
+/* ── Search overlay ── */
+.search-overlay {
+  position: fixed; inset: 0; background: var(--paper); z-index: 500;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  display: flex; flex-direction: column;
+}
+.search-overlay.open { opacity: 1; pointer-events: all; }
+.search-bar-row {
+  max-width: var(--maxw); margin: 0 auto; width: 100%;
+  padding: 20px var(--edge); display: flex; align-items: center; gap: 16px;
+  border-bottom: 1.5px solid var(--ink);
+}
+.search-input {
+  flex: 1; border: none; background: none; outline: none;
+  font-family: var(--ff-display); font-size: clamp(20px, 3.5vw, 34px);
+  font-weight: 700; color: var(--ink);
+}
+.search-input::placeholder { color: var(--mid); }
+.search-close { background: none; border: 2px solid var(--ink); border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 18px; flex-shrink: 0; }
+.search-hints { max-width: var(--maxw); margin: 24px auto; padding: 0 var(--edge); }
+.search-hints p { font-family: var(--ff-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mid); margin-bottom: 12px; }
+.search-hint-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.search-hint-tags a { font-family: var(--ff-body); font-size: 13px; border: 1.5px solid var(--line); border-radius: 100px; padding: 7px 16px; text-decoration: none; }
+
+/* ── HERO ── */
+.hero {
+  border-bottom: 1.5px solid var(--ink);
+  display: grid; grid-template-columns: 1.15fr 1fr;
+  min-height: 86vh;
+}
+.hero-copy {
+  padding: clamp(32px, 5vw, 64px);
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 28px; border-right: 1.5px solid var(--ink);
+}
+.hero-eyebrow {
+  font-family: var(--ff-mono); font-size: 10.5px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+}
+.hero-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--pink); }
+.hero-title {
+  font-family: var(--ff-display); font-weight: 900;
+  font-size: clamp(42px, 6.4vw, 84px); line-height: 0.94; letter-spacing: -0.03em;
+}
+.hero-title em { font-style: normal; color: var(--mid); }
+.hero-title .mark { position: relative; display: inline-block; }
+.hero-title .mark::after {
+  content: ''; position: absolute; left: -2%; right: -2%; bottom: 6%; height: 0.34em;
+  background: var(--lime); z-index: -1;
+}
+.hero-desc { font-size: 15px; color: var(--mid); max-width: 400px; line-height: 1.7; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  font-family: var(--ff-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 15px 28px; border-radius: 3px; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s, color 0.15s;
+  border: 1.5px solid var(--ink);
+}
+.btn-solid { background: var(--ink); color: var(--white); }
+.btn-solid:hover { background: var(--lime); color: var(--ink); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--ink); }
+.btn-outline { background: transparent; color: var(--ink); }
+.btn-outline:hover { background: var(--ink); color: var(--lime); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--pink); }
+
+.hero-stats { display: flex; gap: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+.hstat-num { font-family: var(--ff-display); font-size: 19px; font-weight: 900; display: block; }
+.hstat-label { font-family: var(--ff-mono); font-size: 9px; letter-spacing: 0.08em; color: var(--mid); text-transform: uppercase; }
+
+.hero-media { position: relative; }
+.hero-media .ph { height: 100%; aspect-ratio: auto; }
+.hero-badge {
+  position: absolute; top: 24px; right: 24px; z-index: 2;
+  width: 92px; height: 92px; border-radius: 50%;
+  background: var(--lime); border: 1.5px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  animation: spin 12s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.hero-badge-txt {
+  font-family: var(--ff-mono); font-size: 8.5px; font-weight: 700; text-align: center;
+  line-height: 1.45; text-transform: uppercase; letter-spacing: 0.02em;
+  animation: spin-rev 12s linear infinite;
+}
+@keyframes spin-rev { to { transform: rotate(-360deg); } }
+
+@media (max-width: 880px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-copy { border-right: none; border-bottom: 1.5px solid var(--ink); padding: 40px var(--edge); gap: 22px; }
+  .hero-media .ph { aspect-ratio: 4/3; }
+  .hero-stats { gap: 18px; flex-wrap: wrap; }
+}
+
+/* ── Section scaffolding ── */
+.section { padding: clamp(56px, 8vw, 96px) var(--edge); max-width: var(--maxw); margin: 0 auto; }
+.section-head {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
+  margin-bottom: clamp(24px, 3vw, 36px); flex-wrap: wrap;
+}
+.section-kicker {
+  font-family: var(--ff-mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid);
+  display: block; margin-bottom: 8px;
+}
+.section-title {
+  font-family: var(--ff-display); font-weight: 900;
+  font-size: clamp(26px, 3.4vw, 42px); letter-spacing: -0.02em; line-height: 1;
+}
+.section-title .accent { color: var(--pink); }
+.link-arrow {
+  font-family: var(--ff-mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none;
+  border-bottom: 1.5px solid var(--ink); padding-bottom: 3px;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color 0.15s, border-color 0.15s, gap 0.15s;
+  white-space: nowrap;
+}
+.link-arrow:hover { color: var(--pink); border-color: var(--pink); gap: 10px; }
+
+/* ── Category tiles ── */
+.cat-grid {
+  display: grid; gap: 12px;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 340px 340px;
+}
+.cat-tile {
+  position: relative; overflow: hidden; text-decoration: none; color: var(--white);
+  border: 1.5px solid var(--ink);
+}
+.cat-tile .ph { position: absolute; inset: 0; aspect-ratio: auto; border: none; }
+.cat-tile:nth-child(1) { grid-row: span 2; }
+.cat-tile-scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top, rgba(13,13,13,0.82) 0%, rgba(13,13,13,0.1) 55%, transparent 75%);
+}
+.cat-tile-body { position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 2; }
+.cat-tile-name { font-family: var(--ff-display); font-weight: 900; font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em; margin-bottom: 6px; }
+.cat-tile-cta { font-family: var(--ff-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--lime); }
+.cat-tile:hover .ph img { transform: scale(1.05); }
+.cat-tile .ph img { transition: transform 0.5s ease; }
+
+@media (max-width: 880px) {
+  .cat-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 280px 200px 200px; }
+  .cat-tile:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+}
+@media (max-width: 540px) {
+  .cat-grid { grid-template-columns: 1fr; grid-template-rows: none; }
+  .cat-tile:nth-child(1) { grid-column: auto; }
+  .cat-tile { height: 240px; }
+}
+
+/* ── Filter chips ── */
+.chip-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.chip {
+  font-family: var(--ff-mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 9px 18px; border-radius: 100px; border: 1.5px solid var(--ink);
+  background: transparent; cursor: pointer; transition: all 0.15s; color: var(--ink);
+}
+.chip.active, .chip:hover { background: var(--ink); color: var(--lime); }
+.chip.sale.active, .chip.sale:hover { background: var(--pink); color: var(--white); border-color: var(--pink); }
+
+/* ── Product grid ── */
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.product-card { position: relative; }
+.pcard-media { position: relative; }
+.pcard-media .ph { --ratio: 3/4; }
+.pcard-media .ph-alt {
+  position: absolute; inset: 0; opacity: 0; transition: opacity 0.35s;
+}
+.product-card:hover .pcard-media .ph-alt { opacity: 1; }
+.badge-row { position: absolute; top: 10px; left: 10px; z-index: 3; display: flex; gap: 6px; flex-wrap: wrap; }
+.zbadge {
+  font-family: var(--ff-mono); font-size: 8px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border-radius: 3px;
+}
+.zbadge-sale { background: var(--pink); color: var(--white); }
+.zbadge-new { background: var(--lime); color: var(--ink); }
+.zbadge-hot { background: var(--ink); color: var(--lime); }
+.wish-btn {
+  position: absolute; top: 10px; right: 10px; z-index: 3;
+  width: 32px; height: 32px; background: var(--paper); border: 1.5px solid var(--ink);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 14px; opacity: 0; transition: opacity 0.15s, background 0.15s;
+}
+.product-card:hover .wish-btn, .wish-btn:focus-visible { opacity: 1; }
+.wish-btn:hover { background: var(--pink); color: var(--white); border-color: var(--pink); }
+.wish-btn.on { opacity: 1; background: var(--pink); color: var(--white); border-color: var(--pink); }
+
+.add-btn {
+  position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 3;
+  background: var(--ink); color: var(--lime); border: none; cursor: pointer;
+  padding: 11px; font-family: var(--ff-mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; border-radius: 3px;
+  opacity: 0; transform: translateY(6px); transition: opacity 0.15s, transform 0.15s, background 0.15s;
+}
+.product-card:hover .add-btn { opacity: 1; transform: translateY(0); }
+.add-btn:hover { background: var(--lime); color: var(--ink); }
+
+.prod-info { padding: 14px 2px 0; }
+.prod-name { font-weight: 600; font-size: 13.5px; margin-bottom: 2px; line-height: 1.3; }
+.prod-sub { font-family: var(--ff-mono); font-size: 9px; color: var(--mid); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 9px; }
+.price-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+.price-now { font-family: var(--ff-display); font-size: 14px; font-weight: 700; }
+.price-was { font-family: var(--ff-mono); font-size: 11px; color: var(--mid); text-decoration: line-through; }
+.price-off { font-family: var(--ff-mono); font-size: 9px; font-weight: 700; color: var(--pink); }
+.color-swatches { display: flex; gap: 6px; }
+.swatch {
+  width: 16px; height: 16px; border-radius: 50%; cursor: pointer;
+  border: 1.5px solid transparent; outline: 1px solid var(--line); transition: transform 0.15s, outline-color 0.15s;
+}
+.swatch:hover, .swatch.on { outline-color: var(--ink); transform: scale(1.18); }
+
+@media (max-width: 960px) { .product-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; } }
+@media (max-width: 640px) { .product-grid { grid-template-columns: 1fr 1fr; gap: 12px; } .add-btn { position: static; opacity: 1; transform: none; margin-top: 10px; width: 100%; } .wish-btn { opacity: 1; } }
+
+.load-more { text-align: center; margin-top: 44px; }
+
+/* ── Promo split ── */
+.promo {
+  border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+  background: var(--ink); color: var(--white);
+  display: grid; grid-template-columns: 1fr 1fr; min-height: 460px;
+}
+.promo-copy {
+  padding: clamp(36px, 5vw, 64px); display: flex; flex-direction: column; justify-content: center; gap: 20px;
+  border-right: 1px solid rgba(255,255,255,0.12); position: relative; overflow: hidden;
+}
+.promo-copy::after {
+  content: '%'; position: absolute; right: -10px; bottom: -60px;
+  font-family: var(--ff-display); font-size: 260px; font-weight: 900;
+  color: rgba(255,255,255,0.035); line-height: 1; pointer-events: none;
+}
+.promo-kicker { font-family: var(--ff-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); }
+.promo-title { font-family: var(--ff-display); font-weight: 900; font-size: clamp(34px, 4.4vw, 58px); line-height: 0.98; letter-spacing: -0.02em; }
+.promo-title .hi { color: var(--lime); }
+.promo-desc { color: rgba(255,255,255,0.55); max-width: 380px; line-height: 1.7; font-size: 14px; }
+.promo-media { display: grid; grid-template-rows: 1fr 1fr; }
+.promo-media .ph { --ratio: auto; height: 100%; border: none; border-top: 1px solid rgba(255,255,255,0.1); }
+.promo-media .ph:first-child { border-top: none; }
+.promo-media .ph-tag { background: rgba(13,13,13,0.72); color: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.2); }
+
+@media (max-width: 880px) {
+  .promo { grid-template-columns: 1fr; }
+  .promo-copy { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .promo-media { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
+  .promo-media .ph { border-top: none; border-left: 1px solid rgba(255,255,255,0.1); }
+  .promo-media .ph:first-child { border-left: none; }
+}
+
+/* ── USP strip ── */
+.usp-strip { border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); background: var(--lime); display: grid; grid-template-columns: repeat(4, 1fr); }
+.usp-item { padding: 26px 18px; text-align: center; border-right: 1px solid rgba(13,13,13,0.18); }
+.usp-item:last-child { border-right: none; }
+.usp-icon { width: 22px; height: 22px; margin: 0 auto 10px; }
+.usp-title { font-family: var(--ff-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 3px; }
+.usp-desc { font-size: 11.5px; color: rgba(13,13,13,0.65); }
+@media (max-width: 700px) { .usp-strip { grid-template-columns: 1fr 1fr; } .usp-item { border-bottom: 1px solid rgba(13,13,13,0.18); } .usp-item:nth-child(odd) { border-right: 1px solid rgba(13,13,13,0.18); } }
+
+/* ── Brand story ── */
+.story { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.story-media .ph { --ratio: 4/5; }
+.story-copy p { color: var(--mid); line-height: 1.8; margin-top: 16px; font-size: 14.5px; max-width: 460px; }
+.story-stats { display: flex; gap: 32px; margin-top: 28px; flex-wrap: wrap; }
+@media (max-width: 820px) { .story { grid-template-columns: 1fr; } .story-media { order: -1; } }
+
+/* ── Newsletter ── */
+.nl-section {
+  background: var(--pink); color: var(--white);
+  padding: clamp(56px, 9vw, 96px) var(--edge); text-align: center;
+  position: relative; overflow: hidden; border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+}
+.nl-section::before {
+  content: 'ZELTRA'; position: absolute; left: -6px; top: 50%; transform: translateY(-50%);
+  font-family: var(--ff-display); font-size: clamp(60px, 11vw, 130px); font-weight: 900;
+  color: rgba(255,255,255,0.08); white-space: nowrap; pointer-events: none; letter-spacing: -0.02em;
+}
+.nl-eyebrow { font-family: var(--ff-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 16px; position: relative; }
+.nl-title { font-family: var(--ff-display); font-size: clamp(28px, 4.4vw, 50px); font-weight: 900; letter-spacing: -0.02em; line-height: 1.02; margin-bottom: 10px; position: relative; }
+.nl-sub { color: rgba(255,255,255,0.75); margin-bottom: 32px; position: relative; font-size: 14px; }
+.nl-form { display: flex; max-width: 440px; margin: 0 auto; position: relative; }
+.nl-input {
+  flex: 1; background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.4); border-right: none;
+  padding: 15px 18px; color: var(--white); font-family: var(--ff-body); font-size: 13.5px; outline: none; border-radius: 3px 0 0 3px;
+}
+.nl-input::placeholder { color: rgba(255,255,255,0.6); }
+.nl-input:focus { border-color: var(--lime); }
+.nl-btn {
+  background: var(--ink); color: var(--lime); border: 1.5px solid var(--ink);
+  padding: 15px 24px; font-family: var(--ff-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 0 3px 3px 0;
+  transition: background 0.15s, color 0.15s;
+}
+.nl-btn:hover { background: var(--lime); color: var(--ink); }
+@media (max-width: 480px) { .nl-form { flex-direction: column; } .nl-input { border-right: 1.5px solid rgba(255,255,255,0.4); border-bottom: none; border-radius: 3px 3px 0 0; } .nl-btn { border-radius: 0 0 3px 3px; } }
+
+/* ── Footer ── */
+footer { background: var(--ink); color: var(--white); padding: 56px var(--edge) 24px; }
+.footer-grid { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer-brand .logo-main { color: var(--white); font-size: 24px; }
+.footer-brand .logo-tag { margin-bottom: 18px; }
+.footer-blurb { font-size: 12.5px; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 260px; margin-bottom: 22px; }
+.social-row { display: flex; gap: 8px; }
+.soc-btn { width: 36px; height: 36px; border: 1.5px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; text-decoration: none; border-radius: 6px; transition: 0.15s; }
+.soc-btn:hover { border-color: var(--lime); background: var(--lime); }
+.soc-btn:hover svg { stroke: var(--ink); }
+.soc-btn svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.7); transition: stroke 0.15s; }
+.footer-col h5 { font-family: var(--ff-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 16px; color: rgba(255,255,255,0.85); }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { font-size: 12.5px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.15s; }
+.footer-col ul li a:hover { color: var(--lime); }
+.footer-bottom { max-width: var(--maxw); margin: 20px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-family: var(--ff-mono); font-size: 10px; color: rgba(255,255,255,0.3); }
+.pay-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.pay-tag { font-family: var(--ff-mono); font-size: 9px; font-weight: 700; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); padding: 5px 10px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+@media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-brand { grid-column: span 2; } }
+@media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; gap: 30px; } .footer-brand { grid-column: auto; } }
+
+/* ── Cart drawer ── */
+.cart-overlay { position: fixed; inset: 0; background: rgba(13,13,13,0.45); z-index: 300; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+.cart-overlay.open { opacity: 1; pointer-events: all; }
+.cart-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 92vw); background: var(--paper); z-index: 301;
+  transform: translateX(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column;
+  border-left: 1.5px solid var(--ink);
+}
+.cart-drawer.open { transform: translateX(0); }
+.drawer-head { padding: 20px 22px; border-bottom: 1.5px solid var(--ink); display: flex; justify-content: space-between; align-items: center; }
+.drawer-title { font-family: var(--ff-display); font-size: 18px; font-weight: 900; letter-spacing: -0.02em; }
+.close-x { background: none; border: none; cursor: pointer; font-size: 20px; }
+.drawer-body { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 14px; padding: 32px; text-align: center; }
+.empty-icon { width: 44px; height: 44px; opacity: 0.3; }
+.empty-msg { font-family: var(--ff-mono); font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.08em; }
+.drawer-foot { padding: 20px 22px; border-top: 1.5px solid var(--ink); }
+.drawer-foot .btn { width: 100%; justify-content: center; }
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- MARQUEE -->
+<div class="marquee-bar" role="marquee" aria-label="Promotions">
+  <div class="marquee-inner" aria-hidden="true">
+    <span>Summer drop is live 🔥</span><span class="marquee-sep">·</span>
+    <span>Up to 50% off sitewide</span><span class="marquee-sep">·</span>
+    <span>Free shipping over PKR 3,000</span><span class="marquee-sep">·</span>
+    <span>New fits every Friday</span><span class="marquee-sep">·</span>
+    <span>COD available nationwide</span><span class="marquee-sep">·</span>
+    <span>Summer drop is live 🔥</span><span class="marquee-sep">·</span>
+    <span>Up to 50% off sitewide</span><span class="marquee-sep">·</span>
+    <span>Free shipping over PKR 3,000</span><span class="marquee-sep">·</span>
+    <span>New fits every Friday</span><span class="marquee-sep">·</span>
+    <span>COD available nationwide</span><span class="marquee-sep">·</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+      <span></span>
+    </button>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#">Men</a>
+      <a href="#">Women</a>
+      <a href="#">Juniors</a>
+      <a href="#" class="sale-link">Sale 🔥</a>
+    </nav>
+
+    <a href="#" class="logo-block">
+      <div class="logo-main">ZELTRA</div>
+      <span class="logo-tag">Attire Studio</span>
+    </a>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchBtn" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <a href="#" class="icon-btn" aria-label="Wishlist">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      </a>
+      <button class="icon-btn" id="cartBtn" aria-label="Open cart, 3 items">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="bag-count">3</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mnav-overlay" id="mnavOverlay"></div>
+<nav class="mnav" id="mnav" aria-label="Mobile menu">
+  <div class="mnav-head">
+    <div class="logo-main" style="font-size:18px;">ZELTRA</div>
+    <button class="mnav-close" id="mnavClose" aria-label="Close menu">✕</button>
+  </div>
+  <div class="mnav-body">
+    <details class="mnav-group">
+      <summary>Men</summary>
+      <div class="mnav-sub">
+        <a href="#">T-Shirts &amp; Tops</a>
+        <a href="#">Jorts &amp; Bottoms</a>
+        <a href="#">Hoodies &amp; Sweats</a>
+        <a href="#">Outerwear</a>
+      </div>
+    </details>
+    <details class="mnav-group">
+      <summary>Women</summary>
+      <div class="mnav-sub">
+        <a href="#">Tops &amp; Co-ords</a>
+        <a href="#">Bottoms &amp; Denim</a>
+        <a href="#">Loungewear</a>
+        <a href="#">Outerwear</a>
+      </div>
+    </details>
+    <details class="mnav-group">
+      <summary>Juniors</summary>
+      <div class="mnav-sub">
+        <a href="#">Tees &amp; Tops</a>
+        <a href="#">Bottoms</a>
+      </div>
+    </details>
+    <a href="#" class="mnav-sale">Sale — Up to 50% off 🔥</a>
+  </div>
+  <div class="mnav-foot">
+    <a href="#">Track Order</a>
+    <a href="#">Size Guide</a>
+    <a href="#">Contact Us</a>
+  </div>
+</nav>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-bar-row">
+    <input type="text" class="search-input" placeholder="Search for fits, drops, styles…" aria-label="Search">
+    <button class="search-close" id="searchClose" aria-label="Close search">✕</button>
+  </div>
+  <div class="search-hints">
+    <p>Popular searches</p>
+    <div class="search-hint-tags">
+      <a href="#">Oversized tees</a>
+      <a href="#">Baggy jorts</a>
+      <a href="#">Co-ord sets</a>
+      <a href="#">Puffer vests</a>
+      <a href="#">New drops</a>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-copy">
+    <span class="hero-eyebrow">Summer '26 is here</span>
+    <h1 class="hero-title">Dress<br>like you<br><em>don't</em> <span class="mark">care.</span></h1>
+    <p class="hero-desc">Built for the ones who move fast, dress loud, and scroll slow. Fresh fits for every vibe — from court to café.</p>
+    <div class="hero-ctas">
+      <a href="#trending" class="btn btn-solid">Shop New In</a>
+      <a href="#" class="btn btn-outline">View Sale</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="hstat-num">500+</span><span class="hstat-label">Styles</span></div>
+      <div><span class="hstat-num">50%</span><span class="hstat-label">Off Sale</span></div>
+      <div><span class="hstat-num">2 Day</span><span class="hstat-label">Delivery</span></div>
+    </div>
+  </div>
+  <div class="hero-media">
+    <div class="hero-badge">
+      <div class="hero-badge-txt">NEW<br>DROP<br>★ SS26</div>
+    </div>
+    <div class="ph" style="--ratio:auto;height:100%;">
+      <span class="ph-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        Hero photo — full-bleed lifestyle shot, 1200×1500
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY TILES -->
+<section class="section">
+  <div class="section-head">
+    <div>
+      <span class="section-kicker">Shop by</span>
+      <h2 class="section-title">Category</h2>
+    </div>
+    <a href="#" class="link-arrow">All Collections →</a>
+  </div>
+  <div class="cat-grid">
+    <a href="#" class="cat-tile">
+      <div class="ph" style="--ratio:auto;">
+        <span class="ph-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          Streetwear — model shot
+        </span>
+      </div>
+      <div class="cat-tile-scrim"></div>
+      <div class="cat-tile-body"><div class="cat-tile-name">Streetwear</div><div class="cat-tile-cta">Explore →</div></div>
+    </a>
+    <a href="#" class="cat-tile">
+      <div class="ph" style="--ratio:auto;"><span class="ph-tag">Activewear</span></div>
+      <div class="cat-tile-scrim"></div>
+      <div class="cat-tile-body"><div class="cat-tile-name">Activewear</div><div class="cat-tile-cta">Explore →</div></div>
+    </a>
+    <a href="#" class="cat-tile">
+      <div class="ph" style="--ratio:auto;"><span class="ph-tag">Y2K Edit</span></div>
+      <div class="cat-tile-scrim"></div>
+      <div class="cat-tile-body"><div class="cat-tile-name">Y2K Edit</div><div class="cat-tile-cta">Explore →</div></div>
+    </a>
+    <a href="#" class="cat-tile">
+      <div class="ph" style="--ratio:auto;"><span class="ph-tag">Essentials</span></div>
+      <div class="cat-tile-scrim"></div>
+      <div class="cat-tile-body"><div class="cat-tile-name">Essentials</div><div class="cat-tile-cta">Explore →</div></div>
+    </a>
+    <a href="#" class="cat-tile">
+      <div class="ph" style="--ratio:auto;"><span class="ph-tag">Sale Picks</span></div>
+      <div class="cat-tile-scrim"></div>
+      <div class="cat-tile-body"><div class="cat-tile-name">Sale Picks</div><div class="cat-tile-cta">Explore →</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- PRODUCT GRID -->
+<section class="section" id="trending">
+  <div class="section-head">
+    <div>
+      <span class="section-kicker">Fresh off the rack</span>
+      <h2 class="section-title">Trending <span class="accent">rn</span></h2>
+    </div>
+    <a href="#" class="link-arrow">View All →</a>
+  </div>
+
+  <div class="chip-row" role="group" aria-label="Filter products">
+    <button class="chip active" onclick="setChip(this)">Everything</button>
+    <button class="chip" onclick="setChip(this)">Men</button>
+    <button class="chip" onclick="setChip(this)">Women</button>
+    <button class="chip" onclick="setChip(this)">New In</button>
+    <button class="chip sale" onclick="setChip(this)">On Sale 🔥</button>
+    <button class="chip" onclick="setChip(this)">Streetwear</button>
+    <button class="chip" onclick="setChip(this)">Activewear</button>
+  </div>
+
+  <div class="product-grid">
+
+    <!-- Card 1 -->
+    <article class="product-card">
+      <div class="pcard-media">
+        <div class="badge-row"><span class="zbadge zbadge-hot">🔥 Hot</span></div>
+        <button class="wish-btn" aria-label="Add to wishlist" onclick="toggleWish(this)">♡</button>
+        <div class="ph"><span class="ph-tag">Front — Acid Drop Tee</span></div>
+        <div class="ph ph-alt"><span class="ph-tag">Back / hover shot</span></div>
+        <button class="add-btn">+ Add to Bag</button>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Acid Drop Oversized Tee</div>
+        <div class="prod-sub">Unisex · Drop Shoulder</div>
+        <div class="price-row"><span class="price-now">PKR 1,890</span><span class="price-was">PKR 2,990</span><span class="price-off">−37%</span></div>
+        <div class="color-swatches">
+          <button class="swatch on" style="background:#cbff2e;" onclick="setSwatch(this)" aria-label="Lime"></button>
+          <button class="swatch" style="background:#ff3f8f;" onclick="setSwatch(this)" aria-label="Pink"></button>
+          <button class="swatch" style="background:#0d0d0d;" onclick="setSwatch(this)" aria-label="Black"></button>
+          <button class="swatch" style="background:#f0ebe4;border:1.5px solid #ccc;" onclick="setSwatch(this)" aria-label="Off white"></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="product-card">
+      <div class="pcard-media">
+        <div class="badge-row"><span class="zbadge zbadge-new">New</span></div>
+        <button class="wish-btn" aria-label="Add to wishlist" onclick="toggleWish(this)">♡</button>
+        <div class="ph"><span class="ph-tag">Front — Mesh Panel Set</span></div>
+        <div class="ph ph-alt"><span class="ph-tag">Detail shot</span></div>
+        <button class="add-btn">+ Add to Bag</button>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Mesh Panel Track Set</div>
+        <div class="prod-sub">Women · Two-Piece</div>
+        <div class="price-row"><span class="price-now">PKR 3,590</span></div>
+        <div class="color-swatches">
+          <button class="swatch on" style="background:#7b2fff;" onclick="setSwatch(this)" aria-label="Purple"></button>
+          <button class="swatch" style="background:#0d0d0d;" onclick="setSwatch(this)" aria-label="Black"></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="product-card">
+      <div class="pcard-media">
+        <div class="badge-row"><span class="zbadge zbadge-sale">Sale</span></div>
+        <button class="wish-btn" aria-label="Add to wishlist" onclick="toggleWish(this)">♡</button>
+        <div class="ph"><span class="ph-tag">Front — Cargo Pant</span></div>
+        <div class="ph ph-alt"><span class="ph-tag">Back / hover shot</span></div>
+        <button class="add-btn">+ Add to Bag</button>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Tactical Cargo Pants</div>
+        <div class="prod-sub">Unisex · Relaxed Fit</div>
+        <div class="price-row"><span class="price-now">PKR 2,990</span><span class="price-was">PKR 3,990</span><span class="price-off">−25%</span></div>
+        <div class="color-swatches">
+          <button class="swatch on" style="background:#5a7090;" onclick="setSwatch(this)" aria-label="Blue grey"></button>
+          <button class="swatch" style="background:#4a3a2a;" onclick="setSwatch(this)" aria-label="Brown"></button>
+          <button class="swatch" style="background:#1a2535;" onclick="setSwatch(this)" aria-label="Navy"></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4 -->
+    <article class="product-card">
+      <div class="pcard-media">
+        <button class="wish-btn" aria-label="Add to wishlist" onclick="toggleWish(this)">♡</button>
+        <div class="ph"><span class="ph-tag">Front — Logo Tee</span></div>
+        <div class="ph ph-alt"><span class="ph-tag">Back / hover shot</span></div>
+        <button class="add-btn">+ Add to Bag</button>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Logo Graphic Tee</div>
+        <div class="prod-sub">Unisex · Regular Fit</div>
+        <div class="price-row"><span class="price-now">PKR 1,390</span><span class="price-was">PKR 1,990</span><span class="price-off">−30%</span></div>
+        <div class="color-swatches">
+          <button class="swatch on" style="background:#0d0d0d;" onclick="setSwatch(this)" aria-label="Black"></button>
+          <button class="swatch" style="background:#f0ebe4;border:1.5px solid #ccc;" onclick="setSwatch(this)" aria-label="Off white"></button>
+          <button class="swatch" style="background:#7b2fff;" onclick="setSwatch(this)" aria-label="Purple"></button>
+          <button class="swatch" style="background:#ff3f8f;" onclick="setSwatch(this)" aria-label="Pink"></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 5 -->
+    <article class="product-card">
+      <div class="pcard-media">
+        <div class="badge-row"><span class="zbadge zbadge-new">New</span></div>
+        <button class="wish-btn" aria-label="Add to wishlist" onclick="toggleWish(this)">♡</button>
+        <div class="ph"><span class="ph-tag">Front — Puffer Vest</span></div>
+        <div class="ph ph-alt"><span class="ph-tag">Back / hover shot</span></div>
+        <button class="add-btn">+ Add to Bag</button>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Puffer Vest Crop</div>
+        <div class="prod-sub">Women · Streetwear</div>
+        <div class="price-row"><span class="price-now">PKR 3,890</span></div>
+        <div class="color-swatches">
+          <button class="swatch on" style="background:#7b2fff;" onclick="setSwatch(this)" aria-label="Purple"></button>
+          <button class="swatch" style="background:#ff3f8f;" onclick="setSwatch(this)" aria-label="Pink"></button>
+          <button class="swatch" style="background:#0d0d0d;" onclick="setSwatch(this)" aria-label="Black"></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 6 -->
+    <article class="product-card">
+      <div class="pcard-media">
+        <div class="badge-row"><span class="zbadge zbadge-hot">🔥 Trending</span></div>
+        <button class="wish-btn" aria-label="Add to wishlist" onclick="toggleWish(this)">♡</button>
+        <div class="ph"><span class="ph-tag">Front — Baggy Jorts</span></div>
+        <div class="ph ph-alt"><span class="ph-tag">Back / hover shot</span></div>
+        <button class="add-btn">+ Add to Bag</button>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Utility Baggy Jorts</div>
+        <div class="prod-sub">Men · Y2K Cut</div>
+        <div class="price-row"><span class="price-now">PKR 2,590</span><span class="price-was">PKR 3,490</span><span class="price-off">−26%</span></div>
+        <div class="color-swatches">
+          <button class="swatch on" style="background:#ff6b1a;" onclick="setSwatch(this)" aria-label="Orange"></button>
+          <button class="swatch" style="background:#5a7090;" onclick="setSwatch(this)" aria-label="Blue grey"></button>
+          <button class="swatch" style="background:#1a2535;" onclick="setSwatch(this)" aria-label="Navy"></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 7 -->
+    <article class="product-card">
+      <div class="pcard-media">
+        <div class="badge-row"><span class="zbadge zbadge-new">New</span><span class="zbadge zbadge-sale">−20%</span></div>
+        <button class="wish-btn" aria-label="Add to wishlist" onclick="toggleWish(this)">♡</button>
+        <div class="ph"><span class="ph-tag">Front — Satin Co-ord</span></div>
+        <div class="ph ph-alt"><span class="ph-tag">Back / hover shot</span></div>
+        <button class="add-btn">+ Add to Bag</button>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Satin Slip Co-ord Set</div>
+        <div class="prod-sub">Women · Loungewear</div>
+        <div class="price-row"><span class="price-now">PKR 4,290</span><span class="price-was">PKR 5,390</span><span class="price-off">−20%</span></div>
+        <div class="color-swatches">
+          <button class="swatch on" style="background:#4fffef;" onclick="setSwatch(this)" aria-label="Aqua"></button>
+          <button class="swatch" style="background:#f4c0a0;border:1px solid #ddd;" onclick="setSwatch(this)" aria-label="Peach"></button>
+          <button class="swatch" style="background:#7b2fff;" onclick="setSwatch(this)" aria-label="Purple"></button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 8 -->
+    <article class="product-card">
+      <div class="pcard-media">
+        <button class="wish-btn" aria-label="Add to wishlist" onclick="toggleWish(this)">♡</button>
+        <div class="ph"><span class="ph-tag">Front — Track Jacket</span></div>
+        <div class="ph ph-alt"><span class="ph-tag">Back / hover shot</span></div>
+        <button class="add-btn">+ Add to Bag</button>
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">Retro Track Jacket</div>
+        <div class="prod-sub">Unisex · Zip Up</div>
+        <div class="price-row"><span class="price-now">PKR 3,190</span></div>
+        <div class="color-swatches">
+          <button class="swatch on" style="background:#1a2535;" onclick="setSwatch(this)" aria-label="Navy"></button>
+          <button class="swatch" style="background:#0d0d0d;" onclick="setSwatch(this)" aria-label="Black"></button>
+          <button class="swatch" style="background:#cbff2e;" onclick="setSwatch(this)" aria-label="Lime"></button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="load-more"><a href="#" class="btn btn-solid">Load More Fits</a></div>
+</section>
+
+<!-- PROMO SPLIT -->
+<section class="promo">
+  <div class="promo-copy">
+    <span class="promo-kicker">Sale Season</span>
+    <h2 class="promo-title">Up to<br><span class="hi">50% off</span><br>everything.</h2>
+    <p class="promo-desc">No cap. Every category, every size. Styles are going fast — don't sleep on it.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="#" class="btn btn-solid" style="background:var(--lime);color:var(--ink);border-color:var(--lime);">Shop the Sale</a>
+      <a href="#" class="btn btn-outline" style="border-color:rgba(255,255,255,0.35);color:#fff;">New Arrivals</a>
+    </div>
+  </div>
+  <div class="promo-media">
+    <div class="ph" style="--ratio:auto;"><span class="ph-tag">Men — Essentials Drop</span></div>
+    <div class="ph" style="--ratio:auto;"><span class="ph-tag">Women — Y2K Revival</span></div>
+  </div>
+</section>
+
+<!-- USP STRIP -->
+<div class="usp-strip">
+  <div class="usp-item">
+    <svg class="usp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16V4a1 1 0 0 1 1-1h9v13"/><path d="M14 9h4l3 3v4h-7"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="17.5" cy="18.5" r="1.5"/></svg>
+    <div class="usp-title">Fast Delivery</div><div class="usp-desc">2–3 days nationwide</div>
+  </div>
+  <div class="usp-item">
+    <svg class="usp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg>
+    <div class="usp-title">Free Shipping</div><div class="usp-desc">Orders over PKR 3,000</div>
+  </div>
+  <div class="usp-item">
+    <svg class="usp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+    <div class="usp-title">Easy Returns</div><div class="usp-desc">30-day no-cap policy</div>
+  </div>
+  <div class="usp-item">
+    <svg class="usp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <div class="usp-title">Secure Pay</div><div class="usp-desc">JazzCash · EasyPaisa · COD</div>
+  </div>
+</div>
+
+<!-- BRAND STORY -->
+<section class="section story">
+  <div class="story-media">
+    <div class="ph" style="--ratio:4/5;"><span class="ph-tag">Behind the brand — studio / team shot</span></div>
+  </div>
+  <div class="story-copy">
+    <span class="section-kicker">The Studio</span>
+    <h2 class="section-title">Made in Pakistan,<br>worn <span class="accent">everywhere.</span></h2>
+    <p>Zeltra started with one idea: streetwear shouldn't cost a fortune to feel this good. Every drop is designed, cut, and finished in-house by a small crew obsessed with fit, fabric, and the kind of pieces you actually reach for.</p>
+    <div class="story-stats">
+      <div><span class="hstat-num">2021</span><span class="hstat-label">Founded</span></div>
+      <div><span class="hstat-num">80K+</span><span class="hstat-label">Happy Customers</span></div>
+      <div><span class="hstat-num">4.8★</span><span class="hstat-label">Avg. Rating</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- NEWSLETTER -->
+<section class="nl-section">
+  <div class="nl-eyebrow">✦ Stay in the loop ✦</div>
+  <h2 class="nl-title">First to know.<br>First to cop.</h2>
+  <p class="nl-sub">New drops, exclusive codes, behind-the-scenes — in your inbox.</p>
+  <form class="nl-form" onsubmit="return false;">
+    <label for="nlEmail" class="visually-hidden">Email address</label>
+    <input id="nlEmail" class="nl-input" type="email" placeholder="your@email.com" required>
+    <button class="nl-btn">Subscribe</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col footer-brand">
+      <div class="logo-main">ZELTRA</div>
+      <span class="logo-tag">Attire Studio</span>
+      <p class="footer-blurb">Bold fits for the new generation. Designed in Pakistan, worn by everyone.</p>
+      <div class="social-row">
+        <a href="#" class="soc-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="#" class="soc-btn" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        <a href="#" class="soc-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" class="soc-btn" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.5 17c1-3 1.5-5.5 1.5-7a3 3 0 1 1 3 3c-1 0-1.5-1-1-2"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul><li><a href="#">Men</a></li><li><a href="#">Women</a></li><li><a href="#">Juniors</a></li><li><a href="#">Sale 🔥</a></li><li><a href="#">New Drops</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5>Help</h5>
+      <ul><li><a href="#">Track Order</a></li><li><a href="#">Returns</a></li><li><a href="#">Size Guide</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQs</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5>Zeltra</h5>
+      <ul><li><a href="#">About Us</a></li><li><a href="#">Sustainability</a></li><li><a href="#">Careers</a></li><li><a href="#">Stores</a></li><li><a href="#">Press</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Zeltra Attire Studio. All rights reserved.</p>
+    <div class="pay-row">
+      <span class="pay-tag">JazzCash</span><span class="pay-tag">EasyPaisa</span><span class="pay-tag">Visa</span><span class="pay-tag">MC</span><span class="pay-tag">COD</span>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer" role="dialog" aria-label="Shopping bag">
+  <div class="drawer-head">
+    <span class="drawer-title">Your Bag (3)</span>
+    <button class="close-x" id="cartClose" aria-label="Close cart">✕</button>
+  </div>
+  <div class="drawer-body">
+    <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <div class="empty-msg">Your bag is empty.<br>Go get some fits.</div>
+    <a href="#" class="btn btn-solid" id="keepShopping">Keep Shopping</a>
+  </div>
+  <div class="drawer-foot">
+    <a href="#" class="btn btn-solid">Checkout</a>
+  </div>
+</div>
+
+<script>
+// Mobile nav
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mnav = document.getElementById('mnav');
+const mnavOverlay = document.getElementById('mnavOverlay');
+const mnavClose = document.getElementById('mnavClose');
+function openMnav() { mnav.classList.add('open'); mnavOverlay.classList.add('open'); hamburgerBtn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+function closeMnav() { mnav.classList.remove('open'); mnavOverlay.classList.remove('open'); hamburgerBtn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+hamburgerBtn.addEventListener('click', openMnav);
+mnavClose.addEventListener('click', closeMnav);
+mnavOverlay.addEventListener('click', closeMnav);
+
+// Search overlay
+const searchBtn = document.getElementById('searchBtn');
+const searchOverlay = document.getElementById('searchOverlay');
+const searchClose = document.getElementById('searchClose');
+searchBtn.addEventListener('click', () => { searchOverlay.classList.add('open'); searchOverlay.querySelector('input').focus(); });
+searchClose.addEventListener('click', () => searchOverlay.classList.remove('open'));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { searchOverlay.classList.remove('open'); closeMnav(); closeCart(); } });
+
+// Cart drawer
+const cartOverlay = document.getElementById('cartOverlay');
+const cartDrawer = document.getElementById('cartDrawer');
+function openCart() { cartOverlay.classList.add('open'); cartDrawer.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeCart() { cartOverlay.classList.remove('open'); cartDrawer.classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('cartBtn').addEventListener('click', openCart);
+document.getElementById('cartClose').addEventListener('click', closeCart);
+cartOverlay.addEventListener('click', closeCart);
+document.getElementById('keepShopping').addEventListener('click', e => { e.preventDefault(); closeCart(); });
+
+// Filter chips
+function setChip(el) {
+  el.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Swatches
+function setSwatch(el) {
+  el.parentElement.querySelectorAll('.swatch').forEach(s => s.classList.remove('on'));
+  el.classList.add('on');
+}
+
+// Wishlist toggle
+function toggleWish(el) {
+  el.classList.toggle('on');
+  el.textContent = el.classList.contains('on') ? '♥' : '♡';
+}
+
+// Sticky header shadow
+const header = document.querySelector('header');
+window.addEventListener('scroll', () => {
+  header.style.boxShadow = window.scrollY > 8 ? '0 3px 0 var(--ink)' : 'none';
+}, { passive: true });
+</script>
+</body>
+</html>
